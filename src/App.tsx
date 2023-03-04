@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import Accordion from "./components/Accordion";
-import Rating from "./components/Rating";
+import Rating, {RatingValueType} from "./components/Rating";
+import OnOff from "./components/OnOff";
 
 
 type PageTitlePropsType = {
@@ -9,21 +10,24 @@ type PageTitlePropsType = {
 }
 
 
+
 function App() {
+
+    let [ratingValue, setRatingValue] = useState<RatingValueType>(1)
+let [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false)
+let [onOff, setOnOff] = useState<boolean>(false)
+
     return (
         <div>
-            <PageTitle title={'This is APP component'}/>
+           <PageTitle title={'This is APP component'}/>
             <PageTitle title={'USER'}/>
-            <Accordion titleValue={'Menu'} collapsed={true}/>
-            <Accordion titleValue={'Users'} collapsed={false}/>
-            <Rating value={0}/>
-            <Rating value={1}/>
-            <Rating value={2}/>
-            <Rating value={3}/>
-            <Rating value={4}/>
-            <Rating value={5}/>
+            <Accordion titleValue={'Menu'} collapsed={accordionCollapsed} onChange={()=>{setAccordionCollapsed(!accordionCollapsed)}}/>
+            <Accordion titleValue={'Users'} collapsed={accordionCollapsed} onChange={()=>{setAccordionCollapsed(!accordionCollapsed)}}/>
+            <Rating value={ratingValue} onClick={setRatingValue}/>
+            <OnOff on={onOff} onChange={setOnOff}/>
         </div>
     );
+
 }
 
 export default App;
