@@ -2,6 +2,7 @@ import React, {useState} from "react";
 
 
 type PropsType = {
+    onChange: (on: boolean) => void
     /*on: boolean*/
 }
 
@@ -9,7 +10,7 @@ type PropsType = {
 function OnOff(props: PropsType) {
 
 
-    let [on,setOn] = useState(false)
+    let [on, setOn] = useState(false)
 
 
     const onStyle = {
@@ -39,11 +40,19 @@ function OnOff(props: PropsType) {
         backgroundColor: on ? "green" : "red"
     }
 
+    const onClicked = () => {
+        setOn(true)
+        props.onChange(true)
+    }
+    const offClicked = () => {
+        setOn(false)
+        props.onChange(false)
+    }
 
     return (
         <div>
-            <div style={onStyle} onClick={()=>{setOn(true)}}>on</div>
-            <div style={offStyle} onClick={()=>{setOn(false)}}>off</div>
+            <div style={onStyle} onClick={onClicked}>on</div>
+            <div style={offStyle} onClick={offClicked}>off</div>
             <div style={indicatorStyle}></div>
         </div>
     )

@@ -38,6 +38,7 @@ function OnOff(props: PropsType) {
     }
 
 
+
     return (
         <div>
             <div style={onStyle} onClick={()=>{props.onChange(true)} }>on</div>

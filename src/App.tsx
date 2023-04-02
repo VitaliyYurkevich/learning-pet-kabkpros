@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import './App.css';
 import Accordion from "./components/Accordion";
-import Rating, {RatingValueType} from "./components/Rating";
-import OnOff from "./components/OnOff";
+import Rating, {RatingValueType} from "./components/Rating/Rating";
+import OnOff from "./components/OnOff/OnOff";
+import UncontrolledAccordion from "./components/UncontrolledAccordion/UncontrolledAccordion";
+import UncontrolledOnOff from "./components/UncontrolledOnOff/UncontrolledOnOff";
 
 
 type PageTitlePropsType = {
@@ -15,7 +17,7 @@ function App() {
 
     let [ratingValue, setRatingValue] = useState<RatingValueType>(1)
 let [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false)
-let [onOff, setOnOff] = useState<boolean>(false)
+let [switchOnOff, setSwitchOnOff] = useState<boolean>(false)
 
     return (
         <div>
@@ -24,7 +26,8 @@ let [onOff, setOnOff] = useState<boolean>(false)
             <Accordion titleValue={'Menu'} collapsed={accordionCollapsed} onChange={()=>{setAccordionCollapsed(!accordionCollapsed)}}/>
             <Accordion titleValue={'Users'} collapsed={accordionCollapsed} onChange={()=>{setAccordionCollapsed(!accordionCollapsed)}}/>
             <Rating value={ratingValue} onClick={setRatingValue}/>
-            <OnOff on={onOff} onChange={setOnOff}/>
+            {/*<OnOff on={switchOnOff} onChange={setSwitchOnOff}/>*/}
+            <UncontrolledOnOff onChange={setSwitchOnOff}/> {switchOnOff.toString()}
         </div>
     );
 
